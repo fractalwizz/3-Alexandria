@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import it.jaschke.alexandria.api.Callback;
 
-
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, Callback {
 
     /**
@@ -40,10 +39,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         IS_TABLET = isTablet();
-        if(IS_TABLET){
+        if (IS_TABLET) {
             setContentView(R.layout.activity_main_tablet);
-        }else {
+        } else {
             setContentView(R.layout.activity_main);
         }
 
@@ -51,22 +51,19 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         IntentFilter filter = new IntentFilter(MESSAGE_EVENT);
         LocalBroadcastManager.getInstance(this).registerReceiver(messageReciever,filter);
 
-        navigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         title = getTitle();
 
         // Set up the drawer.
-        navigationDrawerFragment.setUp(R.id.navigation_drawer,
-                    (DrawerLayout) findViewById(R.id.drawer_layout));
+        navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment nextFragment;
 
-        switch (position){
+        switch (position) {
             default:
             case 0:
                 nextFragment = new ListOfBooks();
@@ -77,18 +74,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             case 2:
                 nextFragment = new About();
                 break;
-
         }
 
         fragmentManager.beginTransaction()
-                .replace(R.id.container, nextFragment)
-                .addToBackStack((String) title)
-                .commit();
+            .replace(R.id.container, nextFragment)
+            .addToBackStack((String) title)
+            .commit();
     }
 
-    public void setTitle(int titleId) {
-        title = getString(titleId);
-    }
+    public void setTitle(int titleId) { title = getString(titleId); }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -96,7 +90,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(title);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,8 +99,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
             restoreActionBar();
+
             return true;
         }
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -141,14 +136,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         fragment.setArguments(args);
 
         int id = R.id.container;
-        if(findViewById(R.id.right_container) != null){
-            id = R.id.right_container;
-        }
+        if (findViewById(R.id.right_container) != null) { id = R.id.right_container; }
         getSupportFragmentManager().beginTransaction()
-                .replace(id, fragment)
-                .addToBackStack("Book Detail")
-                .commit();
-
+            .replace(id, fragment)
+            .addToBackStack("Book Detail")
+            .commit();
     }
 
     private class MessageReciever extends BroadcastReceiver {
@@ -160,23 +152,17 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         }
     }
 
-    public void goBack(View view){
-        getSupportFragmentManager().popBackStack();
-    }
+    public void goBack(View view) { getSupportFragmentManager().popBackStack(); }
 
     private boolean isTablet() {
         return (getApplicationContext().getResources().getConfiguration().screenLayout
-                & Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     @Override
     public void onBackPressed() {
-        if(getSupportFragmentManager().getBackStackEntryCount()<2){
-            finish();
-        }
+        if (getSupportFragmentManager().getBackStackEntryCount() < 2) { finish(); }
+
         super.onBackPressed();
     }
-
-
 }
