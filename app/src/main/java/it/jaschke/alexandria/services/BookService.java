@@ -23,11 +23,6 @@ import it.jaschke.alexandria.MainActivity;
 import it.jaschke.alexandria.R;
 import it.jaschke.alexandria.data.AlexandriaContract;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p/>
- */
 public class BookService extends IntentService {
     private final String LOG_TAG = BookService.class.getSimpleName();
 
@@ -35,9 +30,7 @@ public class BookService extends IntentService {
     public static final String DELETE_BOOK = "it.jaschke.alexandria.services.action.DELETE_BOOK";
     public static final String EAN = "it.jaschke.alexandria.services.extra.EAN";
 
-    public BookService() {
-        super("Alexandria");
-    }
+    public BookService() { super("Alexandria"); }
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -47,29 +40,18 @@ public class BookService extends IntentService {
 
             // can we move final String ean out of if?
             if (FETCH_BOOK.equals(action)) {
-                //final String ean = intent.getStringExtra(EAN);
                 fetchBook(ean);
             } else if (DELETE_BOOK.equals(action)) {
-                //final String ean = intent.getStringExtra(EAN);
                 deleteBook(ean);
             }
         }
     }
 
-    /**
-     * Handle action Foo in the provided background thread with the provided
-     * parameters.
-     */
     private void deleteBook(String ean) {
         if (ean != null) { getContentResolver().delete(AlexandriaContract.BookEntry.buildBookUri(Long.parseLong(ean)), null, null); }
     }
 
-    /**
-     * Handle action fetchBook in the provided background thread with the provided
-     * parameters.
-     */
     private void fetchBook(String ean) {
-
         if (ean.length() != 13) { return; }
 
         Cursor bookEntry = getContentResolver().query(

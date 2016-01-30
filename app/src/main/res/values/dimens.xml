@@ -1,11 +1,18 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
     <integer name="ean_size">13</integer>
     <integer name="ean_width">8</integer>
+    <dimen name="ean_pad">20dp</dimen>
+    <dimen name="ean_land_margin">40dp</dimen>
     <dimen name="head_line">24sp</dimen>
     <dimen name="small_fontsize">12sp</dimen>
-
-    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
-         https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="null_pad">0dp</dimen>
+    <dimen name="list_book_title_margin">10dp</dimen>
+    <dimen name="list_book_title_size">16sp</dimen>
+    <dimen name="list_sub_title_size">12sp</dimen>
+    <dimen name="book_title_pad">20dp</dimen>
+    <dimen name="search_margin">10dp</dimen>
+    <dimen name="ean_top_margin">30dp</dimen>
+    <dimen name="scan_margin">23dp</dimen>
+    <dimen name="land_author_margin">25dp</dimen>
 </resources>

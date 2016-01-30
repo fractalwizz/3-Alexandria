@@ -65,7 +65,9 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 String ean = s.toString();
 
                 //catch isbn10 numbers
-                if(ean.length() == 10 && !ean.startsWith("978")) { ean = "978" + ean; }
+                if (ean.length() == 10 && !ean.startsWith("978")) {
+                    ean = "978" + ean;
+                }
 
                 if (ean.length() < 13) {
                     clearFields();
@@ -90,12 +92,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 // Hint: Use a Try/Catch block to handle the Intent dispatch gracefully, if you
                 // are using an external app.
                 //when you're done, remove the toast below.
-                Context context = getActivity();
-                CharSequence text = "This button should let you scan a book for its barcode!";
-                int duration = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                Toast.makeText(getActivity(), "This button should let you scan a book for its barcode!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -116,7 +114,9 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             }
         });
 
-        if(savedInstanceState!=null){
+
+
+        if (savedInstanceState != null) {
             ean.setText(savedInstanceState.getString(EAN_CONTENT));
             ean.setHint("");
         }
@@ -162,7 +162,6 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
         if (Patterns.WEB_URL.matcher(imgUrl).matches()) {
             new DownloadImage((ImageView) rootView.findViewById(R.id.bookCover)).execute(imgUrl);
-
             rootView.findViewById(R.id.bookCover).setVisibility(View.VISIBLE);
         }
 

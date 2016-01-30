@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import java.io.InputStream;
 
 public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
+    public static final String LOG_TAG = DownloadImage.class.getSimpleName();
     ImageView bmImage;
 
     public DownloadImage(ImageView bmImage) { this.bmImage = bmImage; }
@@ -21,7 +22,7 @@ public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
             InputStream in = new java.net.URL(urlDisplay).openStream();
             bookCover = BitmapFactory.decodeStream(in);
         } catch (Exception e) {
-            Log.e("Error", e.getMessage());
+            Log.e(LOG_TAG, e.getMessage());
             e.printStackTrace();
         }
 

@@ -14,21 +14,16 @@ import it.jaschke.alexandria.data.AlexandriaContract;
 import it.jaschke.alexandria.services.DownloadImage;
 
 public class BookListAdapter extends CursorAdapter {
+    public BookListAdapter(Context context, Cursor c, int flags) { super(context, c, flags); }
 
-    public static class ViewHolder {
-        public final ImageView bookCover;
-        public final TextView bookTitle;
-        public final TextView bookSubTitle;
+    @Override
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        View view = LayoutInflater.from(context).inflate(R.layout.book_list_item, parent, false);
 
-        public ViewHolder(View view) {
-            bookCover = (ImageView) view.findViewById(R.id.fullBookCover);
-            bookTitle = (TextView) view.findViewById(R.id.listBookTitle);
-            bookSubTitle = (TextView) view.findViewById(R.id.listBookSubTitle);
-        }
-    }
+        ViewHolder viewHolder = new ViewHolder(view);
+        view.setTag(viewHolder);
 
-    public BookListAdapter(Context context, Cursor c, int flags) {
-        super(context, c, flags);
+        return view;
     }
 
     @Override
@@ -44,15 +39,5 @@ public class BookListAdapter extends CursorAdapter {
 
         String bookSubTitle = cursor.getString(cursor.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
         viewHolder.bookSubTitle.setText(bookSubTitle);
-    }
-
-    @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(R.layout.book_list_item, parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(view);
-        view.setTag(viewHolder);
-
-        return view;
     }
 }

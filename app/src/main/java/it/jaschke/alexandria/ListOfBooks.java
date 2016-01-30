@@ -20,7 +20,7 @@ import it.jaschke.alexandria.api.Callback;
 import it.jaschke.alexandria.data.AlexandriaContract;
 
 public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-
+    public static final String LOG_TAG = ListOfBooks.class.getSimpleName();
     private BookListAdapter bookListAdapter;
     private ListView bookList;
     private int position = ListView.INVALID_POSITION;

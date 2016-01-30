@@ -21,14 +21,10 @@ import it.jaschke.alexandria.api.Callback;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, Callback {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
+    // Fragment managing the behaviors, interactions and presentation of the navigation drawer.
     private NavigationDrawerFragment navigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
+    // Used to store the last screen title
     private CharSequence title;
     public static boolean IS_TABLET = false;
     private BroadcastReceiver messageReciever;
@@ -47,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             setContentView(R.layout.activity_main);
         }
 
-        messageReciever = new MessageReciever();
+        messageReciever = new MessageReceiver();
         IntentFilter filter = new IntentFilter(MESSAGE_EVENT);
         LocalBroadcastManager.getInstance(this).registerReceiver(messageReciever,filter);
 
@@ -108,9 +104,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks here
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
@@ -137,16 +131,17 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         int id = R.id.container;
         if (findViewById(R.id.right_container) != null) { id = R.id.right_container; }
+
         getSupportFragmentManager().beginTransaction()
             .replace(id, fragment)
             .addToBackStack("Book Detail")
             .commit();
     }
 
-    private class MessageReciever extends BroadcastReceiver {
+    private class MessageReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(intent.getStringExtra(MESSAGE_KEY)!=null){
+            if (intent.getStringExtra(MESSAGE_KEY) != null) {
                 Toast.makeText(MainActivity.this, intent.getStringExtra(MESSAGE_KEY), Toast.LENGTH_LONG).show();
             }
         }
