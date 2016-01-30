@@ -54,8 +54,6 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
             }
         );
 
-        if (cursor != null) { cursor.close(); }
-
         bookList = (ListView) rootView.findViewById(R.id.listOfBooks);
         bookList.setAdapter(bookListAdapter);
 
