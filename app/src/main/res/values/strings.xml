@@ -16,6 +16,7 @@
     <string name="input_hint">Insert ISBN-13. Digits only.</string>
     <string name="book_cover">Book Cover</string>
     <string name="not_found">No Book found</string>
+    <string name="not_online">Device Offline - Book cannot be added</string>
     <string name="ok_button">Next</string>
     <string name="cancel_button">Cancel</string>
 
