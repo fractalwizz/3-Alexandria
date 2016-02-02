@@ -25,6 +25,7 @@
     <string name="delete">Delete Book</string>
     <string name="action_share">Share</string>
     <string name="back_button">Go Back</string>
+    <string name="scanner">Scanner</string>
     <string name="share_text">A must read book: </string>
 
     <!-- Settings -->
