@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import it.jaschke.alexandria.R;
+import me.dm7.barcodescanner.zbar.BarcodeFormat;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
@@ -30,6 +35,10 @@ public class ScanActivity extends BaseScannerActivity implements ZBarScannerView
     public void onResume() {
         super.onResume();
         mScannerView.setResultHandler(this);
+
+        List<BarcodeFormat> list = Arrays.asList(BarcodeFormat.EAN13);
+        mScannerView.setFormats(list);
+
         mScannerView.startCamera();
     }
 
